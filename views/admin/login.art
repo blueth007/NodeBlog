@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./css/base.css">   -->
+   <link rel="stylesheet" href="/admin/css/base.css">
+    <title>Login Page</title>
+</head>
+<body>
+   <div class="loginFrame">
+    <h1>LOGIN</h1>
+    <div class='login_form'>
+        <form method='post' acion="/">
+            <p>用户名:</p>
+            <input name='username' placeholder="输入登陆用户名" />
+              <p>密码:</p>
+            <input type="password" name='password'  placeholder="请输入登陆密码" />
+            <input type="submit" value="登陆" />
+        </form>
+        <p>{{ username }}</p>
+    </div>
+   </div>
+   <script>
+    
+   </script>
+</body>
+</html>

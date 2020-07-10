@@ -1,0 +1,40 @@
+body {
+    padding:10px;
+    /* background-color: gray; */
+}
+.loginFrame{
+    width:500px;
+    margin: 50px auto;
+}
+.loginFrame h1{
+    text-align: center;
+}
+.loginFrame .login_form{
+    width: 100%;
+    border: 1px solid lightgray;
+    border-top: 4px solid darkcyan;
+    padding: 20px 10px;
+}
+.login_form p{
+    margin: 0;
+    
+}
+.login_form input + p{
+    margin-top: 15px;
+}
+.login_form input{
+    display: inline-block;
+    padding: 5px;
+    width: 97%;
+    border-radius:4px;
+    outline: none;
+}
+.login_form input[type='submit']{
+    background-color: darkcyan;
+    padding:5px 15px;
+    color: #fff;
+    width: 15%;
+    margin: 10px auto;
+    text-align: center;
+    border: none;
+}

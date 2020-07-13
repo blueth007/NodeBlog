@@ -9,7 +9,7 @@ const bodyParser =require("body-parser");
 
 //连接数据库
 require("./model/connect");
-require("./model/user");
+//require("./model/user");
 
 
 //告诉express框架魔板所在位置 

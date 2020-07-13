@@ -30,19 +30,19 @@ const userSchema= new mongoose.Schema({
 //创建集合
 const User = mongoose.model("User",userSchema);
 //测试新建用户
-User.create({
-    username:'admin',
-    email:"admin@123.com",
-    password:"123",
-    role:"admin",
-    state:0,
-}).then(()=>{
-    console.log("创建成功");
+// User.create({
+//     username:'admin',
+//     email:"admin@123.com",
+//     password:"123",
+//     role:"admin",
+//     state:0,
+// }).then(()=>{
+//     console.log("创建成功");
     
-}).catch(()=>{
-    console.log("创建用户失败");
+// }).catch(()=>{
+//     console.log("创建用户失败");
     
-})
+// })
 
 
 //将用户集合作为模块成员导出

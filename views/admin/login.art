@@ -51,7 +51,7 @@
             console.log(data);
             //需要值{ username："输入值"}
 
-            return false;
+           // return false;
         })
     })
     </script>

@@ -105,3 +105,8 @@ body {
     
     height:150px;
 }
+.main .adduser{
+    float: right;
+    vertical-align: middle;
+    margin-bottom: 10px;
+}

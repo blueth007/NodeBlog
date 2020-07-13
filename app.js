@@ -6,10 +6,12 @@ const admin = require("./route/admin");//引用admin路由模块
 const upload = require("./route/upload");//引用upfile路由模块
 //引入body-parser解析post参数
 const bodyParser =require("body-parser");
+//引入session来判断用户是否正常连接
+const session = require("express-session");
 
 //连接数据库
 require("./model/connect");
-//require("./model/user");
+require("./model/user");
 
 
 //告诉express框架魔板所在位置 
@@ -30,8 +32,21 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 //实现静态资源访问功能
 app.use(express.static(path.join(__dirname,"public")))
+//拦截所有请求 识别session
+app.use(session({secret:"secret key"}));
 
-
+//拦截登陆页面,判断用户是否登陆
+// app.use("/admin",(req,res,next)=>{
+//     //1,判断访问的是否是登陆页面
+//     //2,判断用户是否已经登陆
+//     //   if已经登陆,放行next();
+//     //    else 重定向到登陆页面
+//     if(req.url!='/login'&& ! req.session.username){
+//         res.redirect("/admin/login");
+//     }else next(); //放行登陆
+// })
+/**使用中间件 middleWare拦截 */
+app.use("/admin",require("./middleWare/loginGuard"))
 
 //将路由和请求对象进行匹配
 app.use("/home",home);

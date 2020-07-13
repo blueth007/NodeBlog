@@ -1,12 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/base.css">
-    <title>Document</title>
-</head>
-<body>
-    <h1>User</h1>
-</body>
-</html>
+{{extend './common/layout.art'}}
+
+{{block 'main'}}
+     <div class="container">
+        {{include "./common/header.art"}}
+        <div class="row clearfix main">
+           {{include './common/aside.art'}}
+            <div class="col-md-8 column">
+            <div>
+                <h3>用户数量:3 <a href="#" class="btn btn-info  adduser">
+                 <span class="glyphicon glyphicon-plus"></span>添加用户
+               </a></h3>
+              
+            </div>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                用户名
+                            </th>
+                            <th>
+                                邮箱
+                            </th>
+                            <th>
+                                角色
+                            </th>
+                            <th>
+                                状态
+                            </th>
+                            <th>
+                                操作
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr>
+                        <td>1</td><td>zhangsan</td><td>zhang3@163.com</td><td>普通用户</td><td>正常</td>
+                        <td><button type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-edit"></span></button> <button type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-remove"></span></button></td>
+                       </tr>
+                       <tr>
+                        <td>2</td><td>zhangsan</td><td>zhang3@163.com</td><td>普通用户</td><td>正常</td>
+                        <td><button type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-edit"></span></button> <button type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-remove"></span></button></td>
+                       </tr>
+                       <tr>
+                        <td>3</td><td>zhangsan</td><td>zhang3@163.com</td><td>普通用户</td><td>正常</td>
+                        <td><button type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-edit"></span></button> <button type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-remove"></span></button></td>
+                       </tr>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">6</a></li>
+                    <li><a href="#">»</a></li>
+                  </ul>
+            </div>
+          
+        </div>
+        {{include './common/footer.art'}}
+    </div>
+
+{{/block}}

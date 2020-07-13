@@ -1,7 +1,7 @@
 const express = require("express");
-const { User } = require("../model/user");
+
 const router = express.Router()
-var loginFlag=false;
+ 
 
 router.get("/login", (req, res) => {
 
@@ -10,35 +10,11 @@ router.get("/login", (req, res) => {
 
 })
 
-router.post("/login", async (req, res) => {
-    const { username, password } = req.body;
-    const result = await User.findOne({ username });
-    //console.log("login:",req.body,result);
-    if (result) {
+router.post("/login",require("./admin/login"));//登陆处理
 
-        if (result.password == password) {
-            // res.send("Login");
-            loginFlag=true;
-            res.redirect("/admin/article")
+router.get("/article_edit",require("./admin/articleEdit"));//展示编辑文章
+router.get("/article", require("./admin/articlePage"));//展示文章列表table
+router.get("/user", require("./admin/userPage"));//展示文章列表table
 
-        } else {
-            loginFlag=false;
-            res.render("common/error")
-        }
-    } else {
-        loginFlag=false;
-        res.render("common/error")
-    }
-
-})
-
-router.get("/article_edit", (req, res, next) => {
-    console.log("article_edit");
-    res.render("admin/article-edit")
-})
-router.get("/article", (req, res, next) => {
-    if(loginFlag)
-    res.render("admin/article", req.body)
-    else res.redirect("/admin/login")
-})
+router.get("/logout",require("./admin/logout"))
 module.exports = router

@@ -1,7 +1,7 @@
 const express = require("express");
 const { User } = require("../model/user");
 const router = express.Router()
-
+var loginFlag=false;
 
 router.get("/login", (req, res) => {
 
@@ -18,12 +18,15 @@ router.post("/login", async (req, res) => {
 
         if (result.password == password) {
             // res.send("Login");
+            loginFlag=true;
             res.redirect("/admin/article")
 
         } else {
+            loginFlag=false;
             res.render("common/error")
         }
     } else {
+        loginFlag=false;
         res.render("common/error")
     }
 
@@ -31,12 +34,11 @@ router.post("/login", async (req, res) => {
 
 router.get("/article_edit", (req, res, next) => {
     console.log("article_edit");
-
     res.render("admin/article-edit")
 })
 router.get("/article", (req, res, next) => {
-
+    if(loginFlag)
     res.render("admin/article", req.body)
-
+    else res.redirect("/admin/login")
 })
 module.exports = router

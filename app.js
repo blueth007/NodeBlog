@@ -3,8 +3,13 @@ const app = express();
 const path =require("path");
 const home = require("./route/home");//引用home路由模块
 const admin = require("./route/admin");//引用admin路由模块
+const upload = require("./route/upload");//引用upfile路由模块
 //引入body-parser解析post参数
 const bodyParser =require("body-parser");
+
+//连接数据库
+require("./model/connect");
+require("./model/user");
 
 
 //告诉express框架魔板所在位置 
@@ -31,6 +36,7 @@ app.use(express.static(path.join(__dirname,"public")))
 //将路由和请求对象进行匹配
 app.use("/home",home);
 app.use("/admin",admin);
+app.use("/upload",upload);
 
 app.get("/", async (req, res, next) => {
     const Ip = req.ip//获取主机名和IP地址

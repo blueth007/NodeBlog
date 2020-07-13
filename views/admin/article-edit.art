@@ -1,12 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/base.css">
-    <title>Document</title>
-</head>
-<body>
-    <h1> admin Article Edit</h1>
-</body>
-</html>
+{{extend './common/layout.art'}}
+
+{{block 'main'}}
+     <div class="container">
+        {{include "./common/header.art"}}
+        <div class="row clearfix main">
+           {{include './common/aside.art'}}
+            <div class="col-md-8 column">
+             <form role="form">
+				<div class="form-group">
+					 <label for="articleTitle">文章标题</label><input type="text" class="form-control" id="articleTitle" name='title' />
+				</div>
+				<div class="form-group">
+					 <label for="artilceAuthor">作者</label><input type="text" class="form-control" id="artilceAuthor" name="anthor" />
+				</div>
+				<div class="form-group">
+					 <label for="exampleInputFile">添加图片</label><input type="file" id="exampleInputFile" name="pictures"/>
+					
+				</div>
+				<div class="form-group">
+				  <textarea name="content"  class="form-control" id="editor">
+                 
+                  </textarea>
+				</div>
+                 <button type="submit" class="btn btn-default">Submit</button>
+			</form>
+            </div> 
+          
+        </div>
+        {{include './common/footer.art'}}
+        
+    </div>
+
+{{/block}}
+{{block "script"}}
+<script  type="text/javascript" src="/ckeditor/build/ckeditor.js"></script>
+  <!--     <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>-->
+
+       <script>
+         var data;
+        ClassicEditor.create(document.querySelector('#editor'), {
+              toolbar: {
+					items: [
+						'heading',
+						'|',
+						'bold',
+						'italic',
+						'link',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'indent',
+						'outdent',
+						'|',
+						'imageUpload',
+						'blockQuote',
+						'insertTable',
+						'mediaEmbed',
+						'undo',
+						'redo'
+					]
+				},
+				language: 'zh-cn',
+				image: {
+					toolbar: [
+						'imageTextAlternative',
+						'imageStyle:full',
+						'imageStyle:side'
+					]
+				},
+                ckfinder:{
+                    uploadUrl:"/upload/imgs"
+                },
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells'
+					]
+				},
+				licenseKey: '',
+				
+			} )
+			.then( editor => {
+				window.editor = editor;
+			
+			} )
+			.catch( error => {
+				console.error( 'Oops, something gone wrong!' );
+				console.error( 'Please, report the following error in the https://github.com/ckeditor/ckeditor5 with the build id and the error stack trace:' );
+				console.warn( 'Build id: vbxn3b4ja3xp-8o65j7c6blw0' );
+				console.error( error );
+			} );
+    </script>
+{{/block}}

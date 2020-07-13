@@ -1,4 +1,25 @@
 body {
-    padding:20px;
-    background-color:#fd3;
+   margin:0;
+}
+/* .navbar-default{
+    background-color: #000;
+    
+}
+.navbar-default .navbar-brand,.navbar-default .navbar-nav>li>a  {
+    color: #fff;
+} */
+.personInfo a{
+    min-width: 160px;
+}
+.dropdown-menu li a:hover{
+    background-color: aquamarine;
+}
+.author{
+    color:orange
+}
+.row .caption .description{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
 }

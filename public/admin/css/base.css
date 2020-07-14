@@ -116,3 +116,6 @@ body {
 .personInfo{
     margin-top: 15px;
 }
+.container table thead th  {
+    text-align: center;
+}

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 //Joi插件
 const Joi = require('@hapi/joi');
 //新建规则约束
@@ -78,8 +79,8 @@ async function CreateUser() {
 }
 //CreateUser();
 
-const Validate = async user => {
-    return await schema.validateAsync(user);
+const Validate =  user => {
+   return  schema.validateAsync(user);
 }
 
 //将用户集合作为模块成员导出

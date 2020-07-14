@@ -1,7 +1,7 @@
 //链接数据库
 const mongoose =require("mongoose");
 
-mongoose.connect('mongodb://localhost/blog',{useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/blog',{useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true})
     .then(()=>{
         console.log("数据库连接成功")
     })

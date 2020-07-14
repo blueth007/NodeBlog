@@ -69,7 +69,9 @@ app.post("/", (req, res, next) => {
 //错误解析处理
 app.use((err, req, res, next) => {
     //错误处理只能处理同步
-    res.status(500).send(err.message);
+    const result=JSON.parse(err);
+    res.redirect(`${result.path}?message=${result.message}`)
+    //res.status(500).send(err.message);
 })
 
 app.listen(3000);

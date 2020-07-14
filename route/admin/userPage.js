@@ -1,4 +1,8 @@
-module.exports=(req,res)=>{
 
-    res.render("admin/user")
+
+module.exports = async(req, res) => {
+  
+   res.render("admin/user")
+  
 }
+

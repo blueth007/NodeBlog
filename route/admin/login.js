@@ -16,10 +16,11 @@ const PostLogin = async (req, res) => {
             req.session.username = result.username;
             //或者将这个user变量暴露给全局变量 ,req.app就是在app.js中的app服务
             res.app.locals.userInfo = result;
-            res.redirect("/admin/article")
+            // res.redirect("/admin/article")
+            res.redirect("/admin/user")
 
         } else {
-            loginFlag = false;
+          
             res.render("common/error")
         }
     } else {

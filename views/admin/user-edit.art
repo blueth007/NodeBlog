@@ -6,57 +6,57 @@
         <div class="row clearfix main">
            {{include './common/aside.art'}}
             <div class="col-md-9 column">
-            <div>
-                <h3>新增用户信息</h3>
-                {{if errMsg}}
+            <div class="tipdiv">
+                <h3>{{button=='修改'?"修改"+user._id+"的信息:":"新增用户信息:"}}</h3>
+                {{if message}}
                   <div class="alert alert-warning">
                         <a href="#" class="close" data-dismiss="alert">
                             &times;
                         </a>
-                        <strong>警告！</strong>您的{{errMsg}}。
+                        <strong>警告！</strong>您的{{message}}。
                   </div>
                 {{/if}}
             </div>
-              <form class="form-horizontal" role="form" method="post" id="user_edit" action="/admin/user_edit">
+              <form class="form-horizontal" role="form" method="post" id="user_edit" action={{link}}>
                     <div class="form-group">
-                        <label for="inputUsername" class="col-sm-2 control-label">用户名</label>
+                        <label for="inputUsername" class="col-sm-2 control-label">用户名:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputUsername" name='username' required placeholder="请输入用户名"/>
+                            <input type="text" class="form-control" value="{{user && user.username}}" id="inputUsername" name='username' required placeholder="请输入用户名"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
+                        <label for="inputEmail" class="col-sm-2 control-label">邮箱:</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail" name="email" required placeholder="请输入邮箱"/>
+                            <input type="email" class="form-control" id="inputEmail"  value="{{user && user.email}}"  name="email" required placeholder="请输入邮箱"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+                        <label for="inputPassword" class="col-sm-2 control-label">密码:</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="inputPassword" name="password" required placeholder="请输入密码" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputRole" class="col-sm-2 control-label">角色</label>
+                        <label for="inputRole" class="col-sm-2 control-label">角色:</label>
                         <div class="col-sm-10">
                             <select name="role" class="form-control" id="inputRole">
-                                <option value="normal">普通用户</option>
-                                <option value="admin">超级管理员</option>
+                                <option value="normal" {{user && user.role=='normal'?'selected':''}} >普通用户</option>
+                                <option value="admin"  {{user && user.role=='admin'?'selected':''}}>超级管理员</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus" class="col-sm-2 control-label">状态</label>
+                        <label for="inputStatus" class="col-sm-2 control-label">状态:</label>
                         <div class="col-sm-10">
                             <select name="state" class="form-control" id="inputStatus">
-                                <option value="0">正常</option>
-                                <option value="1">禁用</option>
+                                <option value="0"  {{user && user.state=='0'?'selected':''}}>正常</option>
+                                <option value="1"  {{user && user.state=='1'?'selected':''}}>禁用</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">提交</button>
+                            <button type="submit" class="btn btn-default">{{button}}</button>
                         </div>
                     </div>
                 </form>

@@ -43,10 +43,10 @@
                         <td>{{$value.email}}</td>
                         <td>{{$value.role=="normal"?"普通用户":"超级管理员"}}</td>
                         <td>{{$value.state==0?"正常":"禁止"}}</td>
-                        <td><button type="button" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-edit"></span></button>
-                        <button type="button" class="btn btn-default btn-sm"> 
-                        <span class="glyphicon glyphicon-remove"></span></button></td>
+                        <td><a href="/admin/user_edit?id={{@$value._id}}" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-edit"></span></a>
+                        <a href="#" class="btn btn-default btn-sm"> 
+                        <span class="glyphicon glyphicon-remove"></span></a></td>
                        </tr>
 
                     {{/each}}

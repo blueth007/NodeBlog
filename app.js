@@ -53,18 +53,18 @@ app.use("/home",home);
 app.use("/admin",admin);
 app.use("/upload",upload);
 
-app.get("/", async (req, res, next) => {
-    const Ip = req.ip//获取主机名和IP地址
-    var text = "your ip is " + Ip + " your method is " + req.method;
-    //异步读取文件并捕获错误发送
-    let r1 = await fileRead("./public/default.html", "utf8").then(data => res.send(data)).catch(err => next(err));
-    // res.send(text);
-})
-app.post("/", (req, res, next) => {
-    const Ip = req.ip//获取主机名和IP地址
-    var text = "your ip is " + Ip + " your method is " + req.method;
-    res.send(text);
-})
+// app.get("/", async (req, res, next) => {
+//     const Ip = req.ip//获取主机名和IP地址
+//     var text = "your ip is " + Ip + " your method is " + req.method;
+//     //异步读取文件并捕获错误发送
+//     let r1 = await fileRead("./public/default.html", "utf8").then(data => res.send(data)).catch(err => next(err));
+//     // res.send(text);
+// })
+// app.post("/", (req, res, next) => {
+//     const Ip = req.ip//获取主机名和IP地址
+//     var text = "your ip is " + Ip + " your method is " + req.method;
+//     res.send(text);
+// })
 
 //错误解析处理
 app.use((err, req, res, next) => {

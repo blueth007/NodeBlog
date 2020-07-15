@@ -78,6 +78,7 @@ async function CreateUser() {
 
 }
 //CreateUser();
+//http://rap2.taobao.org:38080/app/mock/232073/blog/users
 
 const Validate =  user => {
    return  schema.validateAsync(user);

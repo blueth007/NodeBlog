@@ -12,6 +12,7 @@ const session = require("express-session");
 //连接数据库
 require("./model/connect");
 require("./model/user");
+require("./model/article");
 
 
 //告诉express框架魔板所在位置 
@@ -70,7 +71,16 @@ app.use("/upload",upload);
 app.use((err, req, res, next) => {
     //错误处理只能处理同步
     const result=JSON.parse(err);
-    res.redirect(`${result.path}?message=${result.message}`)
+    let paramsStrings=[];
+    for (const key in result) {
+        if (result.hasOwnProperty(key)) {
+            const element = result[key];
+            if(key!='path')
+            paramsStrings.push(`${key}=${element}`)
+        }
+    }
+    console.log(result);
+    res.redirect(`${result.path}?${paramsStrings.join("&")}`);
     //res.status(500).send(err.message);
 })
 

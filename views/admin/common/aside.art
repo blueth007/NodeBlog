@@ -4,16 +4,16 @@
         <h1>后台管理</h1>
     </div>
     <div class="list-group">
-            <a href="javascript:;" class="list-group-item active">主页</a>
-        <div class="list-group-item">
+        <a href="javascript:;" class="list-group-item active">主页</a>
+        <div class="list-group-item {{articles?"active":''}}">
             <span class="badge">14</span>
-            <a href="/article">文章列表</a>
+            <a href="/admin/article">文章列表</a>
+        </div>
+        <div class="list-group-item {{users?"active":''}}  " >
+            <a href="/admin/user">用户列表</a>
         </div>
         <div class="list-group-item">
-            <a href="/userlist">用户列表</a>
-        </div>
-        <div class="list-group-item">
-            <a href="/setting:;">设置</a>
+            <a href="/admin/setting">设置</a>
         </div>
         
         

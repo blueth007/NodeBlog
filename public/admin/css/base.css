@@ -77,56 +77,79 @@ body {
     padding-top: 0;
     background-color: #000;
 }
-.article_home .aside .list-group-item{
+
+.article_home .aside .list-group-item {
     background-color: #000;
-    border:none;
-  
+    border: none;
+    border-left: 2px solid transparent;
+    border-bottom: 1px solid transparent;
 }
-.article_home .aside .list-group-item:hover{
+
+.article_home .aside .list-group-item:hover {
     border-left: 2px solid #80accd;
     border-bottom: 1px solid gray;
 }
-.article_home .aside .list-group-item a{
-    display: inline-block;
+
+.article_home .aside .list-group-item a {
+    display: block;
+    text-decoration: none;
     color: #fff;
 }
+
 .article_home .title {
     margin: 0 -15px;
     background-color: rgb(69, 174, 192);
     color: #fff;
     text-align: center;
 }
-.article_home .title h1{
+
+.article_home .title h1 {
     margin-top: 0;
-   
-    padding : 10px   ;
+
+    padding: 10px;
 }
+
 .main textarea.form-control {
-    
-    height:150px;
+
+    height: 150px;
 }
-.main .adduser{
+
+.main .adduser {
     float: right;
     vertical-align: middle;
     margin-bottom: 10px;
 }
-.page-header-0{
+
+.page-header-0 {
     height: 80px;
 }
-.personInfo{
+
+.personInfo {
     margin-top: 15px;
 }
-.container table thead th  {
+
+.container table thead th {
     text-align: center;
 }
-.tipdiv{
-    padding:10px 0 20px;
+
+.tipdiv {
+    padding: 10px 0 20px;
 }
-.form-group{
+
+.form-group {
     margin-bottom: 22px;
 }
 
+.aside .list-group div.active {
+    background-color: #337ab7;
+}
 
-
-
-
+.tb_content {
+    line-height: 1.5 !important;
+  
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}

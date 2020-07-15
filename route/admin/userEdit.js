@@ -2,10 +2,12 @@ const { User } = require("../../model/user")
 
 module.exports = async (req, res, next) => {
     //console.log("user_edit");
-    const { message, id } = req.query;
-    if (id) {
+    const { message, id ,email} = req.query;
+   
+    if (id ) {
         //修改操作
-        let user = await User.findOne({ _id: id });
+        let user  = await User.findOne({ _id: id });
+       
         res.render("admin/user-edit", {
             message,
             user,
@@ -15,8 +17,10 @@ module.exports = async (req, res, next) => {
     } else {
         //添加操作
         console.log(req.query);
+        let user=req.query.user?JSON.parse(req.query.user):null;
         res.render("admin/user-edit", { 
             message ,
+            user,
             link:"/admin/user_edit",
             button:"添加"
         })

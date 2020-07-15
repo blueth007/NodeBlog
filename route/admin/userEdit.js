@@ -2,7 +2,7 @@ const { User } = require("../../model/user")
 
 module.exports = async (req, res, next) => {
     //console.log("user_edit");
-    const { message, id ,email} = req.query;
+    const { message, id } = req.query;
    
     if (id ) {
         //修改操作

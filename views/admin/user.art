@@ -7,7 +7,7 @@
            {{include './common/aside.art'}}
             <div class="col-md-9 column">
             <div>
-                <h3>用户数量:{{count}} <a href="/admin/user_edit" class="btn btn-info  adduser">
+                <h3>用户数量:{{count_user}} <a href="/admin/user_edit" class="btn btn-info  adduser">
                  <span class="glyphicon glyphicon-plus"></span>添加用户
                </a></h3>
               

@@ -1,4 +1,31 @@
-module.exports= (req, res, next) => {
-    console.log("article_edit");
-    res.render("admin/article-edit")
+ 
+
+const { Article } = require("../../model/article")
+
+module.exports = async (req, res, next) => {
+    //console.log("user_edit");
+    const { message, id } = req.query;
+   
+    if (id ) {
+        //修改操作
+        let article  = await Article.findOne({ _id: id });
+       console.log(article)
+        res.render("admin/article-edit", {
+            message,
+            article,
+            link:"/admin/article_modify", //其实是修改用户数据路由地址,
+            button:"修改"
+        })
+    } else {
+        //添加操作
+        console.log(req.query);
+        let user=req.query.user?JSON.parse(req.query.user):null;
+        res.render("admin/article-edit", { 
+            message ,
+            article,
+            link:"/admin/article-edit",
+            button:"添加"
+        })
+    }
+
 }

@@ -1,25 +1,49 @@
 {{extend './common/layout.art'}}
-
+{{block 'link'}}
+ <link href="http://www.bootcss.com/p/bootstrap-datetimepicker/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet">
+ {{/block}}
 {{block 'main'}}
      <div class="container">
         {{include "./common/header.art"}}
         <div class="row clearfix main">
            {{include './common/aside.art'}}
             <div class="col-md-9 column">
-             <form role="form">
-				<div class="form-group">
-					 <label for="articleTitle">文章标题</label><input type="text" class="form-control" id="articleTitle" name='title' />
+             <form role="form" action="{{link}}" method="post">
+			 		<div class="form-group">
+					 <label for="articleID">ID</label><input type="text"  readOnly class="form-control" id="articleID" name='id' value="{{@article&&article._id}}" />
 				</div>
 				<div class="form-group">
-					 <label for="artilceAuthor">作者</label><input type="text" class="form-control" id="artilceAuthor" name="anthor" />
+					 <label for="articleTitle">文章标题</label><input type="text" class="form-control" id="articleTitle" name='title' value="{{article&&article.title}}" />
 				</div>
 				<div class="form-group">
+					 <label for="artilceAuthor">作者</label><input type="text" class="form-control" id="artilceAuthor" name="author" value="{{article&&article.author}}" />
+				</div>
+				<!--	<div class="form-group">
 					 <label for="exampleInputFile">添加图片</label><input type="file" id="exampleInputFile" name="pictures"/>
 					
-				</div>
+				</div> -->
 				<div class="form-group">
-				  <textarea name="content"  class="form-control" id="editor">
-                 
+					<label for="artilceDate">发布时间</label>
+					<div class="input-append date form_datetime ">
+						<input size="20" type="text" value="{{article&&article.dateTime}} " style="width:45%" />
+						<span class="add-on"><i class="icon-remove"></i></span>
+						<span class="add-on"><i class="icon-calendar"></i></span>
+					</div>
+				</div>
+ 
+ 
+
+				<div class="form-group">
+					 <label for="artilceState">发布状态</label>
+					 <select name="publish" class="form-control" id="inputPublish">
+                                <option value="发布"  {{artilce && artilce.publish ? 'selected':''}}>发布</option>
+                                <option value="禁止"  {{artilce && artilce.publish ? 'selected':''}}>禁止</option>
+                     </select>
+				</div>
+
+				<div class="form-group">
+				  <textarea name="content" rows="5" class="form-control" id="editor" >
+                  {{article&&article.content}} 
                   </textarea>
 				</div>
                  <button type="submit" class="btn btn-default">Submit</button>
@@ -33,10 +57,36 @@
 
 {{/block}}
 {{block "script"}}
-<script  type="text/javascript" src="/ckeditor/build/ckeditor.js"></script>
-  <!--     <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>-->
+	<script  type="text/javascript" src="/ckeditor/build/ckeditor.js"></script>
+  	<!--     <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>-->
+<script src="http://www.bootcss.com/p/bootstrap-datetimepicker/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>      
+     <script type="text/javascript">
+	 $(function(){
+			$.fn.datetimepicker.dates['zh-CN'] = {
+						days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
+						daysShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+						daysMin:  ["日", "一", "二", "三", "四", "五", "六", "日"],
+						months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+						monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+						today: "今天",
+						suffix: [],
+						meridiem: ["上午", "下午"]
+				};
+					$(".form_datetime").datetimepicker({ format:'yyyy-mm-dd hh:ii',language:'zh-CN', }); 
+				 //以后更新 bootstrap4的时间格式	
 
-       <script>
+			$(".main form").on("submit",function(){
+				 const data= $(this).serializeArray();
+				 console.log(data)
+               // console.log(formToJson(data));
+				//return false;
+			})
+
+
+
+	 })
+   		
+ 
          var data;
         ClassicEditor.create(document.querySelector('#editor'), {
               toolbar: {
@@ -87,8 +137,6 @@
 			} )
 			.catch( error => {
 				console.error( 'Oops, something gone wrong!' );
-				console.error( 'Please, report the following error in the https://github.com/ckeditor/ckeditor5 with the build id and the error stack trace:' );
-				console.warn( 'Build id: vbxn3b4ja3xp-8o65j7c6blw0' );
 				console.error( error );
 			} );
     </script>

@@ -4,8 +4,7 @@ const mongoose = require("mongoose");
 const Joi = require('@hapi/joi');
 //新建规则约束
 const schema = Joi.object({
-    title: Joi.string()
-        .alphanum().min(3).max(100)
+    title: Joi.string().min(3).max(100)
         .required().error(new Error("标题不符合规则")),
 
     author: Joi.string().required().min(2).max(15)
@@ -23,9 +22,9 @@ const schema = Joi.object({
     //     .min(1900)
     //     .max(2013),
 
-    dateTime: Joi.string().required().error(new Error("时间不符合规则")),
-    publish: Joi.boolean().error(new Error("发布词条不符合规则")),
-    content: Joi.string().required().error(new Error("状态不符合规则"))
+    dateTime: Joi.string().required().error(new Error("发布时间不符合规则")),
+    publish: Joi.boolean().error(new Error("发布与否不符合规则")),
+    content: Joi.string().required().error(new Error("内容不符合规则"))
 });
 
 
@@ -39,8 +38,6 @@ const articleSchema = new mongoose.Schema({
     },
     author: {
         type: String,
-        //保证邮箱地址插入数据库不重复， 唯一值
-        // unique: true,
         required: true,
         default: 'admin'
     },
@@ -52,7 +49,7 @@ const articleSchema = new mongoose.Schema({
         default: new Date().toLocaleString()
     },
     publish: {
-        type: Boolean, //1 没有启用 0， 启动状态
+        type: Boolean, 
         default: false
     }
 })

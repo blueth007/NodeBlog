@@ -79,6 +79,7 @@ async function CreateUser() {
 }
 //CreateUser();
 //http://rap2.taobao.org:38080/app/mock/232073/blog/users
+// mongoimport --db blog --collection articles --jsonArray articel.json
 
 const Validate =  user => {
    return  schema.validateAsync(user);

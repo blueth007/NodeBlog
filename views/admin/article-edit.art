@@ -1,6 +1,6 @@
 {{extend './common/layout.art'}}
 {{block 'link'}}
- <link href="http://www.bootcss.com/p/bootstrap-datetimepicker/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet">
+ <link href="/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
  {{/block}}
 {{block 'main'}}
      <div class="container">
@@ -10,7 +10,7 @@
             <div class="col-md-9 column">
              <form role="form" action="{{link}}" method="post">
 			 		<div class="form-group">
-					 <label for="articleID">ID</label><input type="text"  readOnly class="form-control" id="articleID" name='id' value="{{@article&&article._id}}" />
+					 <label for="articleID">ID</label><input type="text"  readonly class="form-control" id="articleID" name='id' value="{{@article&&article._id}}" />
 				</div>
 				<div class="form-group">
 					 <label for="articleTitle">文章标题</label><input type="text" class="form-control" id="articleTitle" name='title' value="{{article&&article.title}}" />
@@ -23,21 +23,19 @@
 					
 				</div> -->
 				<div class="form-group">
-					<label for="artilceDate">发布时间</label>
-					<div class="input-append date form_datetime ">
-						<input size="20" type="text" value="{{article&&article.dateTime}} " style="width:45%" />
-						<span class="add-on"><i class="icon-remove"></i></span>
-						<span class="add-on"><i class="icon-calendar"></i></span>
+					<label for="dtp_input1" >发布时间</label>
+					<div class="input-group date form_datetime col-md-5" data-date="{{article&&article.dateTime}}"   data-link-field="dtp_input1">
+						<input class="form-control" name="dateTime" size="16" type="text" value="{{article&&article.dateTime}}" readonly>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 					</div>
+					<input type="hidden" id="dtp_input1" value="" />
 				</div>
- 
- 
-
 				<div class="form-group">
 					 <label for="artilceState">发布状态</label>
 					 <select name="publish" class="form-control" id="inputPublish">
-                                <option value="发布"  {{artilce && artilce.publish ? 'selected':''}}>发布</option>
-                                <option value="禁止"  {{artilce && artilce.publish ? 'selected':''}}>禁止</option>
+                                <option value="true"  {{artilce && artilce.publish ? 'selected':''}}>发布</option>
+                                <option value="false"  {{artilce && artilce.publish ? 'selected':''}}>禁止</option>
                      </select>
 				</div>
 
@@ -59,7 +57,7 @@
 {{block "script"}}
 	<script  type="text/javascript" src="/ckeditor/build/ckeditor.js"></script>
   	<!--     <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>-->
-<script src="http://www.bootcss.com/p/bootstrap-datetimepicker/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>      
+	<script src="/bootstrap/js/bootstrap-datetimepicker.min.js"></script>      
      <script type="text/javascript">
 	 $(function(){
 			$.fn.datetimepicker.dates['zh-CN'] = {
@@ -72,7 +70,16 @@
 						suffix: [],
 						meridiem: ["上午", "下午"]
 				};
-					$(".form_datetime").datetimepicker({ format:'yyyy-mm-dd hh:ii',language:'zh-CN', }); 
+					$(".form_datetime").datetimepicker({
+						format:"yyyy-mm-dd hh:ii",
+						language:'zh-CN', 
+						weekStart: 1,
+						todayBtn:  1,
+						autoclose: 1,
+						todayHighlight: 1,
+						forceParse: 0,
+						showMeridian: 1
+						}); 
 				 //以后更新 bootstrap4的时间格式	
 
 			$(".main form").on("submit",function(){
@@ -82,8 +89,6 @@
 				//return false;
 			})
 
-
-
 	 })
    		
  
@@ -91,23 +96,9 @@
         ClassicEditor.create(document.querySelector('#editor'), {
               toolbar: {
 					items: [
-						'heading',
-						'|',
-						'bold',
-						'italic',
-						'link',
-						'bulletedList',
-						'numberedList',
-						'|',
-						'indent',
-						'outdent',
-						'|',
-						'imageUpload',
-						'blockQuote',
-						'insertTable',
-						'mediaEmbed',
-						'undo',
-						'redo'
+						'heading','|','bold','italic','link','bulletedList','numberedList', 'alignment', 
+						'|','indent','outdent','|','imageUpload','blockQuote','insertTable',
+						'mediaEmbed','undo','redo'
 					]
 				},
 				language: 'zh-cn',
@@ -119,7 +110,7 @@
 					]
 				},
                 ckfinder:{
-                    uploadUrl:"/upload/imgs"
+                    uploadUrl:"/upload2/imgs"
                 },
 				table: {
 					contentToolbar: [

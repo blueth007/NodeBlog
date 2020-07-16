@@ -4,6 +4,7 @@ const path =require("path");
 const home = require("./route/home");//引用home路由模块
 const admin = require("./route/admin");//引用admin路由模块
 const upload = require("./route/upload");//引用upfile路由模块
+const upload2 = require("./route/upload2");//引用upfile2路由模块
 //引入body-parser解析post参数
 const bodyParser =require("body-parser");
 //引入session来判断用户是否正常连接
@@ -24,6 +25,7 @@ app.engine("art",require("express-art-template"));
 
 const fs = require("fs");
 const { promisify } = require("util")
+//fs读取文件异步变同步函数
 const fileRead = promisify(fs.readFile);
 
 //配置body-parser模块
@@ -52,7 +54,8 @@ app.use("/admin",require("./middleWare/loginGuard"))
 //将路由和请求对象进行匹配
 app.use("/home",home);
 app.use("/admin",admin);
-app.use("/upload",upload);
+//app.use("/upload",upload);
+app.use("/upload2",upload2);
 
 // app.get("/", async (req, res, next) => {
 //     const Ip = req.ip//获取主机名和IP地址
@@ -70,6 +73,7 @@ app.use("/upload",upload);
 //错误解析处理
 app.use((err, req, res, next) => {
     //错误处理只能处理同步
+   
     const result=JSON.parse(err);
     let paramsStrings=[];
     for (const key in result) {

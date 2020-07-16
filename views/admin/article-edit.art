@@ -110,7 +110,7 @@
 					]
 				},
                 ckfinder:{
-                    uploadUrl:"/upload2/imgs"
+                    uploadUrl:"/uploadImage/"
                 },
 				table: {
 					contentToolbar: [

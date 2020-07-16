@@ -4,7 +4,7 @@ const path =require("path");
 const home = require("./route/home");//引用home路由模块
 const admin = require("./route/admin");//引用admin路由模块
 const upload = require("./route/upload");//引用upfile路由模块
-const upload2 = require("./route/upload2");//引用upfile2路由模块
+const uploadImage = require("./route/uploadImage");//引用upfile2路由模块
 //引入body-parser解析post参数
 const bodyParser =require("body-parser");
 //引入session来判断用户是否正常连接
@@ -55,7 +55,7 @@ app.use("/admin",require("./middleWare/loginGuard"))
 app.use("/home",home);
 app.use("/admin",admin);
 //app.use("/upload",upload);
-app.use("/upload2",upload2);
+app.use("/uploadImage",uploadImage);
 
 // app.get("/", async (req, res, next) => {
 //     const Ip = req.ip//获取主机名和IP地址
@@ -73,7 +73,7 @@ app.use("/upload2",upload2);
 //错误解析处理
 app.use((err, req, res, next) => {
     //错误处理只能处理同步
-   
+   console.log("Happen err..............!!!!!!!!!!!!");
     const result=JSON.parse(err);
     let paramsStrings=[];
     for (const key in result) {

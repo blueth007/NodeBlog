@@ -7,7 +7,19 @@
         {{include "./common/header.art"}}
         <div class="row clearfix main">
            {{include './common/aside.art'}}
+		  
             <div class="col-md-9 column">
+			  <div class="tipdiv">
+                <h3>{{button=='修改'?"修改文章信息:":"新增文章信息:"}}</h3>
+                {{if message}}
+                  <div class="alert alert-warning">
+                        <a href="#" class="close" data-dismiss="alert">
+                            &times;
+                        </a>
+                        <strong>警告！</strong>您的{{message}}。
+                  </div>
+                {{/if}}
+            </div>
              <form role="form" action="{{link}}" method="post">
 			 		<div class="form-group">
 					 <label for="articleID">ID</label><input type="text"  readonly class="form-control" id="articleID" name='id' value="{{@article&&article._id}}" />
@@ -43,8 +55,9 @@
 				  <textarea name="content" rows="5" class="form-control" id="editor" >
                   {{article&&article.content}} 
                   </textarea>
+				  <div class="sidebar"></div>
 				</div>
-                 <button type="submit" class="btn btn-default">Submit</button>
+                 <button type="submit" class="btn btn-default">{{button}}</button>
 			</form>
             </div> 
           
@@ -90,18 +103,48 @@
 			})
 
 	 })
-   		
- 
-         var data;
-        ClassicEditor.create(document.querySelector('#editor'), {
-              toolbar: {
+   	</script>	
+ 	<script>
+		ClassicEditor
+			.create( document.querySelector( '#editor' ), {
+				
+				toolbar: {
 					items: [
-						'heading','|','bold','italic','link','bulletedList','numberedList', 'alignment', 
-						'|','indent','outdent','|','imageUpload','blockQuote','insertTable',
-						'mediaEmbed','undo','redo'
+						'heading',
+						'|',
+						'fontFamily',
+						'fontColor',
+						'fontSize',
+						'bold',
+						'italic',
+						'highlight',
+						'|',
+						'underline',
+						'strikethrough',
+						'horizontalLine',
+						'subscript',
+						'superscript',
+						'|',
+						'bulletedList',
+						'numberedList',
+						'alignment:left','alignment:center','alignment:right',
+						'|',
+						'indent',
+						'outdent',
+						'|',
+						'imageUpload',
+						'blockQuote',
+						'insertTable',
+						'mediaEmbed',
+						'link',
+						'undo',
+						'redo'
 					]
 				},
 				language: 'zh-cn',
+				ckfinder:{
+					uploadUrl:'/uploadImage'
+					},
 				image: {
 					toolbar: [
 						'imageTextAlternative',
@@ -109,26 +152,31 @@
 						'imageStyle:side'
 					]
 				},
-                ckfinder:{
-                    uploadUrl:"/uploadImage/"
-                },
 				table: {
 					contentToolbar: [
 						'tableColumn',
 						'tableRow',
-						'mergeTableCells'
+						'mergeTableCells',
+						'tableCellProperties',
+						'tableProperties'
 					]
 				},
-				licenseKey: '',
+				licenseKey: '8qs90pdg1dwy-61tyciacj5dr',
 				
 			} )
 			.then( editor => {
 				window.editor = editor;
-			
+		
+				
+				
+				
 			} )
 			.catch( error => {
 				console.error( 'Oops, something gone wrong!' );
+				console.error( 'Please, report the following error in the https://github.com/ckeditor/ckeditor5 with the build id and the error stack trace:' );
+				console.warn( 'Build id: 8qs90pdg1dwy-61tyciacj5dr' );
 				console.error( error );
 			} );
-    </script>
+	</script>
+ 
 {{/block}}

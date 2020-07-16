@@ -2,6 +2,7 @@ body {
     padding: 10px;
     /* background-color: gray; */
 }
+
 /* 
 @media (min-width: 1400px) {
     .container {
@@ -27,7 +28,7 @@ body {
     }
 } */
 
-.container{
+.container {
     width: 1334px;
 }
 
@@ -87,18 +88,18 @@ body {
 
 /* article 的css */
 .article_home .container {
-   
+
     display: flex;
     display: -webkit-flex;
     align-items: stretch;
     flex-direction: column;
-     
+
 }
 
 .article_home .main {
     display: flex;
     display: -webkit-flex;
-  
+
     align-items: stretch;
 }
 
@@ -186,11 +187,35 @@ body {
     .container {
         width: 998px;
     }
-    .article_home .main{
+
+    .article_home .main {
         display: block;
     }
-    .main .column{
+
+    .main .column {
         width: 100%;
     }
 }
 
+.ck-editor__editable_inline {
+    min-height: 300px !important;
+}
+.ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items{
+    flex-wrap:wrap !important;
+}
+.ck.ck-reset_all, .ck.ck-reset_all * {
+    float: left !important;
+}
+.ck-toolbar__items {
+    position: relative; 
+}
+.ck-toolbar__items::after{
+    position: absolute;
+    content: "";
+    top:38px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--ck-color-toolbar-border);
+ 
+}

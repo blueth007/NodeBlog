@@ -19,11 +19,11 @@ module.exports = async (req, res, next) => {
     } else {
         //添加操作
         console.log(req.query);
-        let user=req.query.user?JSON.parse(req.query.user):null;
+        let article=req.query.article?JSON.parse(req.query.user):null;
         res.render("admin/article-edit", { 
             message ,
             article,
-            link:"/admin/article-edit",
+            link:"/admin/article_add",
             button:"添加"
         })
     }

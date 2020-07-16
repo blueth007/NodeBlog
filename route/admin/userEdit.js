@@ -21,7 +21,7 @@ module.exports = async (req, res, next) => {
         res.render("admin/user-edit", { 
             message ,
             user,
-            link:"/admin/user_edit",
+            link:"/admin/user_add",
             button:"添加"
         })
     }

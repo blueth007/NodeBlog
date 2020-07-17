@@ -30,10 +30,10 @@
 				<div class="form-group">
 					 <label for="artilceAuthor">作者</label><input type="text" class="form-control" id="artilceAuthor" name="author" value="{{article&&article.author}}" />
 				</div>
-				<!--	<div class="form-group">
-					 <label for="exampleInputFile">添加图片</label><input type="file" id="exampleInputFile" name="pictures"/>
-					
-				</div> -->
+				<div class="form-group">
+					 <label for="exampleInputPic">封面图片</label>
+					 <input type="file" id="exampleInputPic" name="pictures"/>		
+				</div>
 				<div class="form-group">
 					<label for="dtp_input1" >发布时间</label>
 					<div class="input-group date form_datetime col-md-5" data-date="{{article&&article.dateTime}}"   data-link-field="dtp_input1">
@@ -100,6 +100,13 @@
 				 console.log(data)
                // console.log(formToJson(data));
 				//return false;
+			})
+
+			$("#exampleInputPic").on("change",function(e){
+				$.ajax({
+					url:'/admin/upload",
+					data:e.target.file;
+				})	
 			})
 
 	 })

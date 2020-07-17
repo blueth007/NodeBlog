@@ -5,9 +5,9 @@ const home =express.Router();//创建路由对象
 
 
 //在hone下创建二级路由
-home.get("/",(req,res)=>{
-    res.render('home/index')
-})
+home.get("/", require("./home/list"));//展示home下的所有文章
+
+
 home.get("/index",(req,res)=>{
     // http::1/home/index?name=zhangshan&sex=man
     //req.query是get请求的参数 {name:zhangsan,sex:man}

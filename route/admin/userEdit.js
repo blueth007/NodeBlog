@@ -6,7 +6,12 @@ module.exports = async (req, res, next) => {
    
     if (id ) {
         //修改操作
-        let user  = await User.findOne({ _id: id });
+        let user;
+        try{
+            user  = await User.findOne({ _id: id });
+         }catch(error){
+              return next(JSON.stringify({path:"/admin/user",message:"没有找到对应ID的用户",id}));
+         }
        
         res.render("admin/user-edit", {
             message,
@@ -16,7 +21,7 @@ module.exports = async (req, res, next) => {
         })
     } else {
         //添加操作
-        console.log(req.query);
+        // console.log(req.query);
         let user=req.query.user?JSON.parse(req.query.user):null;
         res.render("admin/user-edit", { 
             message ,

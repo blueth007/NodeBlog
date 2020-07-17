@@ -8,8 +8,13 @@ module.exports = async (req, res, next) => {
    
     if (id ) {
         //修改操作
-        let article  = await Article.findOne({ _id: id });
-       console.log(article)
+        let article
+       try{
+          article  = await Article.findOne({ _id: id });
+       }catch(error){
+            return next(JSON.stringify({path:"/admin/article",message:"没有找到对应ID的文章",id}));
+       }
+    //    console.log(article)
         res.render("admin/article-edit", {
             message,
             article,
@@ -18,7 +23,7 @@ module.exports = async (req, res, next) => {
         })
     } else {
         //添加操作
-        console.log(req.query);
+        // console.log(req.query);
         let article=req.query.article?JSON.parse(req.query.user):null;
         res.render("admin/article-edit", { 
             message ,

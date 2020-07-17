@@ -1,4 +1,5 @@
 const express = require("express");
+const { route } = require("./uploadImage");
 
 const router = express.Router()
  
@@ -12,14 +13,22 @@ router.get("/login", (req, res) => {
 
 router.post("/login",require("./admin/login"));//登陆处理
 
-router.get("/article_edit",require("./admin/articleEdit"));//展示编辑文章
-router.post("/article_add",require("./admin/articleEditPostAdd"));//展示编辑文章
-router.post("/article_modify",require("./admin/articleEditModify"));//展示编辑文章
 router.get("/article", require("./admin/articlePage"));//展示文章列表table
-router.use("/user", require("./admin/userPage"));//展示文章列表table
+router.get("/article_edit",require("./admin/articleEdit"));//展示编辑文章
+router.get("/article_delete",require("./admin/articleDelete"));//删除文章
+router.post("/article_add",require("./admin/articleEditPostAdd"));//展示编辑文章
+router.post("/article_modify",require("./admin/articleEditModify"));//修改编辑文章
+
+
+
+router.get("/user", require("./admin/userPage"));//展示文章列表table
 router.get("/user_edit", require("./admin/userEdit"));//展示用户列表table
+router.get("/user_delete",require("./admin/userDelete"));//删除用户请求
 router.post("/user_add", require("./admin/userEditPostAdd"));//添加用户post方式
-router.post("/user_modify", require("./admin/userEditModify"));//添加用户post方式
+router.post("/user_modify", require("./admin/userEditModify"));//修改post方式
 
 router.get("/logout",require("./admin/logout"))
+router.use("/",(req,res)=>{
+    res.render("common/NotFound");
+})
 module.exports = router

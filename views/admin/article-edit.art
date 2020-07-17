@@ -91,9 +91,9 @@
 						autoclose: 1,
 						todayHighlight: 1,
 						forceParse: 0,
-						showMeridian: 1
+						showMeridian: 0
 						}); 
-				 //以后更新 bootstrap4的时间格式	
+				
 
 			$(".main form").on("submit",function(){
 				 const data= $(this).serializeArray();

@@ -6,11 +6,20 @@
         <div class="row clearfix main">
            {{include './common/aside.art'}}
             <div class="col-md-9 column">
+            {{if notice}}
+                  <div class="alert alert-warning">
+                        <a href="#" class="close" data-dismiss="alert">
+                            &times;
+                        </a>
+                        <strong>警告！</strong>您的{{notice}}。
+                  </div>
+                {{/if}}
                 <h3>文章列表({{count_article}}) 
                 <a href="/admin/article_edit" class="btn btn-info  adduser">
                  <span class="glyphicon glyphicon-plus"></span>添加新文章
                </a>
                 </h3>
+                <div class="table-responsive" style="margin:0;width:100%">
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
@@ -42,23 +51,24 @@
                         {{each articles}}
                             <tr>
                                 <td>{{@$value._id}}</td>
-                                <td ><div  class="tb_content">{{$value.title}}</div></td>
+                                <td ><div  class="tb_content article-title ">{{$value.title}}</div></td>
                                 <td>{{$value.author}}</td>
-                                <td><div class="tb_content">
+                                <td><div class="tb_content  " >
                                     {{$value.content}}
                                     </div>
                                 </td>
                                 <td>{{$value.dateTime}}</td>
                                 <td>{{$value.publish?"发布":"未发布"}}</td>
-                                <td><a href="/admin/article_edit?id={{@$value._id}}" class="btn btn-default btn-sm">
+                                <td><a href="/admin/article_edit?id={{@$value._id}}" class="btn btn-default btn-sm editbtn">
                                     <span class="glyphicon glyphicon-edit"></span></a>
-                                    <a href="#" class="btn btn-default btn-sm"> 
+                                    <a href="/admin/article_delete?id={{@$value._id}}" class="btn btn-default btn-sm deletebtn"> 
                                     <span class="glyphicon glyphicon-remove"></span></a>
                                 </td>
                             </tr>
                         {{/each}}
                     </tbody>
                 </table>
+                </div>
                <ul class="pagination">
                     <li class=" <%= page==1?'disabled':'' %> "><a href="/admin/article?page=<%= page-1==0?1:(page-1) %>">«</a></li>
                     <%  for(var i = 1; i<=totalPage ; i++){   %>
@@ -69,6 +79,7 @@
             </div>
           
         </div>
+        
         {{include './common/footer.art'}}
     </div>
 
@@ -85,6 +96,25 @@
                          "href" : "javascript:;",
                     })
                 }
+            })
+            $(".deletebtn").on("click",function(e){
+                      if(confirm("确定删除")){
+                          console.log($(this).attr("href"));
+                          $.ajax({
+                              url:$(this).attr("href"),
+                              method:"get",
+                              success:function(){
+                                    location.href="/admin/article?page={{page}}"  
+                              },
+                              error:function(){
+                                 location.href="/admin/article?page={{page}}"  
+                              }
+                          })
+                      }else {
+                          console.log("没有删除")
+                          location.href="/admin/article"  
+                          };
+                    return false;
             })
             
         })

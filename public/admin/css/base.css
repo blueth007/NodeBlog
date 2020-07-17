@@ -160,7 +160,7 @@ body {
 
 .container table thead th {
     text-align: center;
-    min-width: 90px;
+    min-width: 93px;
 }
 
 .tipdiv {
@@ -174,14 +174,20 @@ body {
 .aside .list-group div.active {
     background-color: #337ab7;
 }
+.aside .list-group  .list-group-item a{
+    margin-left: 20px;
+}
 
 .table-bordered tr .tb_content {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
+    width: 210px;
 }
-
+.article-title {
+    width: 150px !important;
+}
 
 @media (max-width: 1100px) {
     .container {
@@ -193,6 +199,7 @@ body {
     }
 
     .main .column {
+        position: relative;
         width: 100%;
     }
 }
@@ -219,3 +226,4 @@ body {
     background: var(--ck-color-toolbar-border);
  
 }
+ 

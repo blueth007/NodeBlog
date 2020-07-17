@@ -41,11 +41,11 @@ router.post('/imgs', function(req, res, next) {
     up(req, res, function(err) {
         if (err instanceof multer.MulterError) {
             // 发生错误
-            console.log("Multer 错误");
+            // console.log("Multer 错误");
             return next(err)
           } else if (err) {
             // 发生错误
-            console.log("其他 错误");
+            // console.log("其他 错误");
            return  next(err)
           }
           // Everything went fine

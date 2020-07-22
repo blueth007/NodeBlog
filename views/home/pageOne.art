@@ -1,0 +1,48 @@
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>Home</title>
+</head>
+
+<body>
+     
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="page-header">
+                    <h1>
+                       头部主题<small>子主题</small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <span class="label label-default">标签1</span>  <span class="label label-default">标签2</span>  <span class="label label-default">标签3</span>
+                <h3 class="text-center">
+                  {{article.title}}
+                </h3>
+               <div class="list_author">
+                    <a class="author" href="javascript:;">{{article.author}}</a> | <span class="datetime" href="javascript:;">{{article.dateTime}}</span>
+                </div>
+                <p>
+                    {{@article.content}}
+                </p>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <address> <strong>Twitter, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890</address>
+            </div>
+        </div>
+    </div>
+    <script src="https://s0.pstatp.com/cdn/expire-1-M/jquery/3.4.0/jquery.min.js" type="application/javascript"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

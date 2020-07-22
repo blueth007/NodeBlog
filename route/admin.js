@@ -28,6 +28,10 @@ router.post("/user_add", require("./admin/userEditPostAdd"));//添加用户post�
 router.post("/user_modify", require("./admin/userEditModify"));//修改post方式
 
 router.get("/logout",require("./admin/logout"))
+
+router.get("/images",require("./admin/images"));//图片管理
+router.get("/images/delete",require("./admin/imagesDelete"));//图片管理
+
 router.use("/",(req,res)=>{
     res.render("common/NotFound");
 })

@@ -18,8 +18,43 @@ body {
     color:orange
 }
 .row .caption .description{
+    height: 55px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp:3;
     overflow: hidden;
+}
+.thumbnail {
+    background-color: transparent;
+ }
+
+.list_title{
+    height: 55px;
+
+}
+.list_title h4{
+    font-weight: 800;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:2;
+    overflow: hidden;
+}
+.list_author{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+ .list_item{
+    display: block;
+ 
+}
+
+a.list_item:hover{
+     text-decoration: none;
+     background-color: #d5dcca
+}
+figure.image{
+    text-align: center;
+    padding: 15px 0;
 }

@@ -4,7 +4,10 @@ const path =require("path");
 const home = require("./route/home");//引用home路由模块
 const admin = require("./route/admin");//引用admin路由模块
 const upload = require("./route/upload");//引用upfile路由模块
-const uploadImage = require("./route/uploadImage");//引用upfile2路由模块
+const uploadImage = require("./route/uploadImage");//引用upfileImage路由模块
+
+const testApi= require("./route/util")
+
 //引入body-parser解析post参数
 const bodyParser =require("body-parser");
 //引入session来判断用户是否正常连接
@@ -22,6 +25,7 @@ app.set("views",path.join(__dirname,"views"));
 app.set("view engine","art");
 //渲染后缀为art魔板,所使用魔板引擎 express-art-template
 app.engine("art",require("express-art-template"));
+
 
 const fs = require("fs");
 const { promisify } = require("util")
@@ -49,13 +53,14 @@ app.use(session({secret:"secret key"}));
 //     }else next(); //放行登陆
 // })
 /**使用中间件 middleWare拦截 */
-app.use("/admin",require("./middleWare/loginGuard"))
+//app.use("/admin",require("./middleWare/loginGuard"))
 
 //将路由和请求对象进行匹配
 app.use("/home",home);
 app.use("/admin",admin);
-//app.use("/upload",upload);
+app.use("/upload",upload);
 app.use("/uploadImage",uploadImage);
+app.use("/testApi",testApi);
 
 // app.get("/", async (req, res, next) => {
 //     const Ip = req.ip//获取主机名和IP地址

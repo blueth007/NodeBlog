@@ -32,7 +32,8 @@
 				</div>
 				<div class="form-group">
 					 <label for="exampleInputPic">封面图片</label>
-					 <input type="file" id="exampleInputPic" name="pictures"/>		
+					 <input type="file" id="exampleInputPic" name="pictures"/>	
+					 <img  id="preImage" style="width:200px;height:200px;"  src="{{article&&article.cover}}"/>	
 				</div>
 				<div class="form-group">
 					<label for="dtp_input1" >发布时间</label>
@@ -103,10 +104,30 @@
 			})
 
 			$("#exampleInputPic").on("change",function(e){
-				$.ajax({
-					url:'/admin/upload",
-					data:e.target.file;
-				})	
+				var e = e || window.event;
+                var files = e.target.files;
+                var file = files[0];
+                //文件上传              
+                var formData = new FormData();
+                formData.append('file', file);                
+               // console.log(file);
+
+                $.ajax({
+                    contentType: "multipart/form-data",
+                    url:'/upload/imgs',
+                    type:"POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        const out=JSON.parse(res)
+                        console.log(out);
+                        $("#preImage").attr("src",out.imgPath)
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
 			})
 
 	 })

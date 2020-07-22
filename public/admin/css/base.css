@@ -226,4 +226,7 @@ body {
     background: var(--ck-color-toolbar-border);
  
 }
- 
+ .imageList .thumbnail img{
+     width: 100%;
+     height: 120px;
+ }

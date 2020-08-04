@@ -53,7 +53,7 @@ app.use(session({secret:"secret key"}));
 //     }else next(); //放行登陆
 // })
 /**使用中间件 middleWare拦截 */
-//app.use("/admin",require("./middleWare/loginGuard"))
+app.use("/admin",require("./middleWare/loginGuard"))
 
 //将路由和请求对象进行匹配
 app.use("/home",home);
@@ -74,7 +74,9 @@ app.use("/testApi",testApi);
 //     var text = "your ip is " + Ip + " your method is " + req.method;
 //     res.send(text);
 // })
-
+app.use("/",(req,res)=>{
+    res.redirect("/home")
+});
 //错误解析处理
 app.use((err, req, res, next) => {
     //错误处理只能处理同步
@@ -92,6 +94,6 @@ app.use((err, req, res, next) => {
     res.redirect(`${result.path}?${paramsStrings.join("&")}`);
     //res.status(500).send(err.message);
 })
-
-app.listen(3000);
-console.log("服务器已启动.....")
+const  port = 3000;
+app.listen(port);
+console.log("server is runnind at :"+port);

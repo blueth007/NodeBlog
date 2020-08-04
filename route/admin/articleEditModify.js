@@ -2,7 +2,7 @@ const { Article,Validate } = require("../../model/article");
 
 module.exports = async (req, res,next) => {
     const params = JSON.parse(JSON.stringify(req.body));
-    
+    console.log(params)
     try {
          await Validate({
             title:params.title,

@@ -8,6 +8,7 @@ module.exports = async (req, res,next) => {
             title:params.title,
             author:params.author,
             content:params.content,
+            summary:params.summary,
             dateTime:params.dateTime,
             publish:params.publish
         });
@@ -25,7 +26,9 @@ module.exports = async (req, res,next) => {
     let newarticle= await Article.updateOne({_id:params.id},{
         title:params.title,
         author:params.author,
+        cover:params.cover,
         content:params.content,
+        summary:params.summary,
         dateTime:params.dateTime,
         publish:params.publish
     });

@@ -11,18 +11,6 @@ const schema = Joi.object({
     password: Joi.string().required()
         .pattern(new RegExp('^[a-zA-Z0-9]{3,18}$')).error(new Error("密码不符合规则")),
 
-    //repeat_password: Joi.ref('password'),
-
-    // access_token: [
-    //     Joi.string(),
-    //     Joi.number()
-    // ],
-
-    // birth_year: Joi.number()
-    //     .integer()
-    //     .min(1900)
-    //     .max(2013),
-
     email: Joi.string().required()
         .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'cc', 'cn'] } }).error(new Error("邮箱不符合规则")),
     role: Joi.string().valid('normal', 'admin').error(new Error("角色不符合规则")),

@@ -28,7 +28,7 @@ router.post('/', async (req, res, next) => {
             const fileName = filePath.match(/(upload_.*)$/g)[0];
             const newPath = filePath.replace(path.join(__dirname.replace("route", ""), 'public'), '');
             // console.log('fields:', fields);
-            // console.log('files:', files);
+            // console.log('files:', files);0000.。。。。。。。。。。。。。。。。
             console.log('fileName:', fileName);
             console.log('newPath:', newPath);
 

@@ -5,7 +5,7 @@ const home = require("./route/home");//引用home路由模块
 const admin = require("./route/admin");//引用admin路由模块
 const upload = require("./route/upload");//引用upfile路由模块
 const uploadImage = require("./route/uploadImage");//引用upfileImage路由模块
-
+const cookieparser =require("cookie-parser");
 const testApi= require("./route/util")
 
 //引入body-parser解析post参数
@@ -25,7 +25,8 @@ app.set("views",path.join(__dirname,"views"));
 app.set("view engine","art");
 //渲染后缀为art魔板,所使用魔板引擎 express-art-template
 app.engine("art",require("express-art-template"));
-
+//cookie 设置
+app.use(cookieparser());
 
 const fs = require("fs");
 const { promisify } = require("util")
@@ -94,6 +95,4 @@ app.use((err, req, res, next) => {
     res.redirect(`${result.path}?${paramsStrings.join("&")}`);
     //res.status(500).send(err.message);
 })
-const  port = 3000;
-app.listen(port);
-console.log("server is runnind at :"+port);
+module.exports = app;

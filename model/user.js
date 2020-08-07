@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const {v5} =require("uuid");
 //Joi插件
 const Joi = require('@hapi/joi');
 //新建规则约束
@@ -53,7 +53,7 @@ async function CreateUser() {
     User.create({
         username: 'admin',
         email: "admin@123.com",
-        password: "123",
+        password: v5("123@abc",v5.URL),//uuid.v5
         role: "admin",
         state: 0,
     }).then(() => {
